@@ -8,7 +8,7 @@ DATA_FILE = 'norilog.json'
 
 
 def save_data(start, finish, memo, created_at):
-    """記録データを保存します
+    """記録データを保存する
     :param start: 乗った駅
     :type start: str
     :param finish: 降りた駅
@@ -63,7 +63,7 @@ def index():
 @application.route('/save', methods=['POST'])
 def save():
     """記録用 URL"""
-    # 記録されたデータを取得すうｒ
+    # 記録されたデータを取得する
     start = request.form.get('start')
     finish = request.form.get('finish')
     memo = request.form.get('memo')
@@ -78,6 +78,9 @@ def nl2br_filter(s):
     """改行文字をbrタグに置き換えるテンプレートフィルター"""
     return escape(s).replace('\n', Markup('<br>'))
 
+def main():
+    application.run('127.0.0.1', 8000)
+
 if __name__ == '__main__':
-    # IPアドレス0.0.0.0の8000番ポートでアプリケーションを実行する
-    application.run('0.0.0.0', 8000, debug=True)
+    # IPアドレス127.0.0.1の8000番ポートでアプリケーションを実行する
+    application.run('127.0.0.1', 8000, debug=True)
